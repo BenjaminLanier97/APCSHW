@@ -128,11 +128,6 @@ return (ConcecatedString);
     }
 
 
-    //Overload add in the following way:
-    //void add() :
-    //  Works the same, but will increase the array capacity if needed.
-    //What does this mean? See mailing list post
-
     public void add(int index, Object o){
 	Object[] FinalType;
 
