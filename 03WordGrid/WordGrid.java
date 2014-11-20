@@ -1,16 +1,23 @@
+
 public class WordGrid{
     private char[][]data;
-
-    /**Initialize the grid to the size specified and fill all of the positions
-     *with spaces.
-     *@param row is the starting height of the WordGrid
-     *@param col is the starting width of the WordGrid
-     */
     public WordGrid(int rows,int cols){
+	data = new char[rows][cols];
+	for (int i = 0; i < data.length; i ++){
+	for (int z = 0; z < data[i].length; z++){
+	data[i][z] = ' ';
+}
+}
+	
+	
     }
 
-    /**Set all values in the WordGrid to spaces ' '*/
     private void clear(){
+	for (int i = 0; i < data.length; i ++){
+	for (int z = 0; z < data[i].length; z++){
+	data[i][z] = ' ';
+}
+}
     }
 
     /**The proper formatting for a WordGrid is created in the toString.
@@ -18,6 +25,13 @@ public class WordGrid{
      *separated by newlines.
      */
     public String toString(){
+	String Contains = ""
+ 	for (int i = 0; i < data.length; i ++){
+	for (int z = 0; z < data[i].length; z++){
+	Contains += data[i][z];
+}
+}
+	return contains
     }
 
     /**Attempts to add a given word to the specified position of the WordGrid.
