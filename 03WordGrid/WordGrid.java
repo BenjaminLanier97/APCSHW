@@ -24,18 +24,15 @@ public class WordGrid{
 }
     }
 
-    /**The proper formatting for a WordGrid is created in the toString.
-     *@return a String with each character separated by spaces, and each row
-     *separated by newlines.
-     */
     public String toString(){
 	String Contains = ""
  	for (int i = 0; i < data.length; i ++){
 	for (int z = 0; z < data[i].length; z++){
-	Contains += data[i][z];
+	Contains += data[i][z] + " "
 }
+Contains += "/n"
 }
-	return contains
+	return Contains
     }
 
     /**Attempts to add a given word to the specified position of the WordGrid.
@@ -50,7 +47,14 @@ public class WordGrid{
      */
     public boolean addWordHorizontal(String word,int row, int col){
     	int size  = word.length();
-    	if (size > row)
+    	int position = 0;
+    	if (size > row){
+    		return false;
+    	} else {
+    		
+    		
+    	}
+    	}
     }
    public boolean addWordVertical(String word,int row, int col){
     	int size  = word.length();
