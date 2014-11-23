@@ -1,6 +1,10 @@
 
 public class WordGrid{
     private char[][]data;
+    public WordGrid(){
+    	this.WordGrid(10,8);
+    
+    }
     public WordGrid(int rows,int cols){
 	data = new char[rows][cols];
 	for (int i = 0; i < data.length; i ++){
@@ -45,8 +49,15 @@ public class WordGrid{
      *or there are overlapping letters that do not match, then false is returned.
      */
     public boolean addWordHorizontal(String word,int row, int col){
+    	int size  = word.length();
+    	if (size > row)
     }
-
+   public boolean addWordVertical(String word,int row, int col){
+    	int size  = word.length();
+    }
+       public boolean addWordDiagonal(String word,int row, int col){
+    	int size  = word.length();
+    }
     //vertical + diagonal should be implemented as well.
 
 }
