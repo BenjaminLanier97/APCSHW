@@ -51,11 +51,15 @@ Contains += "/n"
     	if (size > row){
     		return false;
     	} else {
-    		
-    		
-    	}
-    	}
-    }
+    		for (int i = 0; i < data.length; i ++){
+    			 if !(data[i + col][row].equals(word[i])){
+    			 	return false;
+    			 }
+
+}
+return true;
+}	
+
    public boolean addWordVertical(String word,int row, int col){
     	int size  = word.length();
     }
