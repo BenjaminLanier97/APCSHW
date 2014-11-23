@@ -62,6 +62,17 @@ return true;
 
    public boolean addWordVertical(String word,int row, int col){
     	int size  = word.length();
+    	    	if (size > col){
+    		return false;
+    	} else {
+    		for (int i = 0; i < data.length; i ++){
+    			 if !(data[row][col].equals(word[i])){
+    			 	return false;
+    			 }
+
+}
+return true;
+}
     }
        public boolean addWordDiagonal(String word,int row, int col){
     	int size  = word.length();
