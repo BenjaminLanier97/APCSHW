@@ -77,6 +77,6 @@ return true;
        public boolean addWordDiagonal(String word,int row, int col){
     	int size  = word.length();
     }
-    //vertical + diagonal should be implemented as well.
+   
 
 }
