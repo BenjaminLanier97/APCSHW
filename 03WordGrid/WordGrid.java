@@ -57,20 +57,27 @@ public void fillEmptySpaces() {
     }
 }
 
+
+
+
+
 public void setSeed(int seed) {
     this.R1.setSeed(seed);
 }
-
-    public String toString(){
+  public String toString(){
 	String Contains = "";
  	for (int i = 0; i < data.length; i ++){
 	for (int z = 0; z < data[i].length; z++){
+	    if (data[i][z] == ' ') {
+	        Contains += "_" + " ";
+	    } else{
 	    Contains += data[i][z] + " ";
-}
+	    }
+	}
 	Contains += "\n";
-}
+	}
 	return Contains;
-    }
+  }
 
 public void loadFromFile(String filename, boolean fillEmptySpaces) {
    this.clear();
@@ -86,17 +93,17 @@ public void loadFromFile(String filename, boolean fillEmptySpaces) {
   
     int counter = 0;
     while (scnr.hasNextLine()) {
-	String line = scnr.nextLine();
+	String line = (scnr.nextLine()).toUpperCase();
 	this.WordAddition.add(counter, line);
 	counter ++;
 	
     }
-    System.out.print(WordAddition.toString());
+    // System.out.print(WordAddition.toString());
     for (int i = 0; i < WordAddition.size(); i++) {
 	boolean added = false;
 	int placement, rowTry, colTry;
       
-	  System.out.println(WordAddition.toString());
+	// System.out.println(WordAddition.toString());
 	for (int z = 0; z < 100; z++) {
 	   
 	  
@@ -125,16 +132,16 @@ public void loadFromFile(String filename, boolean fillEmptySpaces) {
 	    if(added){
 		break;
 	    } else if (z == 99) {
-		System.out.print("Joe");
-	       WordAddition.set(i, null);
+		//System.out.print("Joe");
+	       WordAddition.remove(i);
 	    }
 	}
     }
-    System.out.print(WordAddition.toString());
-    System.out.print("Bob");
+    // System.out.print(WordAddition.toString());
+    //  System.out.print("Bob");
     if (fillEmptySpaces) {
 	this.fillEmptySpaces();
-    }
+}
 }
 
 
@@ -142,7 +149,7 @@ public void loadFromFile(String filename, boolean fillEmptySpaces) {
  public boolean addWordVerticalNegative(String word,int row, int col){
        try{
     
-    		for (int i = 0; i < data.length; i ++){
+	   for (int i = 0; i < word.length(); i ++){
 		    if (!(data[row][col- i] == word.charAt(i) || (data[row][col+i] == ' '))){
     			 	return false;
 		    }
@@ -164,10 +171,11 @@ return true;
 
    public boolean addWordHorizontalPositive(String word,int row, int col){
        try{
-	   System.out.println(row.parseInt(), col.parseInt());
+	   // System.out.println(row);
+	   //  System.out.println(col);
     
-    		for (int i = 0; i < data.length; i ++){
-		    if (!(data[row + i][col] == (word.charAt(i)) || (data[row][col+i] == ' '))){
+	   for (int i = 0; i < word.length(); i ++){
+		    if (!(data[row + i][col] == (word.charAt(i)) || (data[row + i][col] == ' '))){
 		
     			 	return false;
     			 }
@@ -175,7 +183,7 @@ return true;
 		
        }
 		    catch (Exception e) {
-			//System.out.println("Bobby");
+			//	System.out.println("Bobby");
 			return false;
 		    }
    
@@ -189,7 +197,7 @@ return true;
    public boolean addWordHorizontalNegative(String word,int row, int col){
        try{
     
-    		for (int i = 0; i < data.length; i ++){
+	   for (int i = 0; i < word.length(); i ++){
 		    if (!(data[row - i][col] == (word.charAt(i)) || (data[row-i][col] == ' '))){
     			 	return false;
     			 }
@@ -209,7 +217,7 @@ return true;
 public boolean addWordDiagonalRightPositive(String word,int row, int col){
        try{
     
-    		for (int i = 0; i < data.length; i ++){
+    		for (int i = 0; i < word.length(); i ++){
 		    if (!(data[row + i ][col+ i] == (word.charAt(i)) || (data[row][col+1] == ' '))){
     			 	return false;
 			}
@@ -231,7 +239,7 @@ return true;
    public boolean addWordDiagonalLeftPositive(String word,int row, int col){
        try{
     
-    		for (int i = 0; i < data.length; i ++){
+	   for (int i = 0; i < word.length(); i ++){
 		    if (!(data[row - i][col+i] == (word.charAt(i)) || (data[row - i][col+i] == ' '))){
     			 	return false;
     			 
@@ -251,7 +259,7 @@ return true;
   public boolean addWordDiagonalLeftNegative(String word,int row, int col){
        try{
     
-    		for (int i = 0; i < data.length; i ++){
+    		for (int i = 0; i < word.length(); i ++){
 		    if (!(data[row - i][col-i] == (word.charAt(i)) || (data[row - i][col-i] == ' '))){
     			 	return false;
     			 }
@@ -276,7 +284,7 @@ return true;
   public boolean addWordDiagonalRightNegative(String word,int row, int col){
        try{
     
-    		for (int i = 0; i < data.length; i ++){
+    		for (int i = 0; i < word.length(); i ++){
 		    if (!(data[row + i][col-i] == (word.charAt(i)) || (data[row + i][col-i] == ' '))){
     			 	return false;
     			 }
@@ -295,7 +303,7 @@ return true;
    public boolean addWordVerticalPositive(String word,int row, int col){
        try{
     
-    		for (int i = 0; i < data.length; i ++){
+    		for (int i = 0; i < word.length(); i ++){
 		    if (!(data[row + i][col] == (word.charAt(i)) || (data[row + i][col] == ' '))){
     			 	return false;
 		    }
@@ -312,3 +320,5 @@ return true;
 
   }
 }
+
+
