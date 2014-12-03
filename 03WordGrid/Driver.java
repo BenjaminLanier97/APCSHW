@@ -14,8 +14,9 @@ public static void main(String[] args) {
 	} else {
 	    w.loadFromFile("words.txt", true);
 	}
-	System.out.println("Find these words");
+	System.out.println("Find these words:");
 	System.out.println(w.wordsInPuzzle());
+	System.out.println();
 	System.out.println(w.toString());
     }
     catch (Exception e) {
