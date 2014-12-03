@@ -11,10 +11,12 @@ public class WordGrid{
     private ArrayList<String> WordAddition = new ArrayList<String>();
 
     public WordGrid(){
-    	this.WordGrid(10,8);
+    	this(10,8);
     
     }
     public WordGrid(int rows,int cols){
+	this.rows = rows;
+	this.cols = cols;
 	data = new char[rows][cols];
 	for (int i = 0; i < data.length; i ++){
 	for (int z = 0; z < data[i].length; z++){
@@ -22,10 +24,19 @@ public class WordGrid{
 }
 }
 	
-	
+	this.clear();	
     }
-
-    private void clear(){
+public String wordsInPuzzle() {
+    String WordString = "";
+    for (int i = 0; i < WordAddition.size(); i++) {
+	WordString += WordAddition.get(i) + "\t";
+	if (i % 5 == 0 && i > 0) {
+	    WordString += "\n";
+	}
+}
+return WordString;
+}
+ public  void clear(){
 	for (int i = 0; i < data.length; i ++){
 	for (int z = 0; z < data[i].length; z++){
 	data[i][z] = ' ';
@@ -38,8 +49,8 @@ public class WordGrid{
 public void fillEmptySpaces() {
     for (int i = 0; i < this.rows; i ++) {
 	for (int z = 0; z < this.cols; z ++) {
-	    if (this.data_[i][z] = ' ') {
-		this.data_[i][z] = R1.nextInt(26);
+	    if (data[i][z] == ' ') {
+		data[i][z] = (char)(this.R1.nextInt(26) + 65);
 	    }
 
 	}
@@ -51,24 +62,24 @@ public void setSeed(int seed) {
 }
 
     public String toString(){
-	String Contains = ""
+	String Contains = "";
  	for (int i = 0; i < data.length; i ++){
 	for (int z = 0; z < data[i].length; z++){
-	Contains += data[i][z] + " "
+	    Contains += data[i][z] + " ";
 }
-Contains += "/n"
+	Contains += "\n";
 }
-	return Contains
+	return Contains;
     }
 
 public void loadFromFile(String filename, boolean fillEmptySpaces) {
-    data.clear();
+   this.clear();
     File fl;
     Scanner scnr;
     try {
 	fl = new File(filename);
 	scnr = new Scanner(fl);
-    } catch (Exception e) {
+    } catch(Exception e){
 	System.out.println("ERROR: File was not found.");
 	return;
     }
@@ -80,13 +91,19 @@ public void loadFromFile(String filename, boolean fillEmptySpaces) {
 	counter ++;
 	
     }
+    System.out.print(WordAddition.toString());
     for (int i = 0; i < WordAddition.size(); i++) {
 	boolean added = false;
 	int placement, rowTry, colTry;
+      
+	  System.out.println(WordAddition.toString());
 	for (int z = 0; z < 100; z++) {
+	   
+	  
 	    placement = this.R1.nextInt(8);
 	    rowTry = this.R1.nextInt(this.rows);
 	    colTry = this.R1.nextInt(this.cols);
+	  
 	    if(placement == 0) {
 			added = this.addWordVerticalNegative(WordAddition.get(i), rowTry, colTry);
 	    } else if(placement == 1){
@@ -104,153 +121,126 @@ public void loadFromFile(String filename, boolean fillEmptySpaces) {
 	    }else if(placement == 7){
 		      	added = this.addWordVerticalPositive(WordAddition.get(i), rowTry, colTry);
 	    }
+	    //System.out.println(added);
 	    if(added){
 		break;
 	    } else if (z == 99) {
-	       WordAddition.set(i, "H-54");
+		System.out.print("Joe");
+	       WordAddition.set(i, null);
 	    }
 	}
     }
+    System.out.print(WordAddition.toString());
+    System.out.print("Bob");
     if (fillEmptySpaces) {
-	data.fillEmptySpaces();
+	this.fillEmptySpaces();
     }
 }
 
-   public boolean addWordVerticalPositive(String word,int row, int col){
-       try{
-    	int size  = word.length();
-    	    	if (size > col){
-    		return false;
-    	} else {
-    		for (int i = 0; i < data.length; i ++){
-		    if !(data[row][col+i] == (word.charAt(i)) || (data[row][col+i] == ' ')) {
-    			 	return false;
-    			 }
-			}
-		}
-		    catch (Exception e) {
-			return false;
-		    }
-}
-for (int i = 0; i < word.length(); ++i) {
-this.data[row][col + i] = word.charAt(i);
-}
-return true;
-}
-   }
 
-   public boolean addWordVerticalNegative(String word,int row, int col){
+
+ public boolean addWordVerticalNegative(String word,int row, int col){
        try{
-    	int size  = word.length();
-    	    	if (size > col){
-    		return false;
-    	} else {
+    
     		for (int i = 0; i < data.length; i ++){
-		    if !(data[row][col- i] == word.charAt(i) || (data[row][col+i] == ' ')){
+		    if (!(data[row][col- i] == word.charAt(i) || (data[row][col+i] == ' '))){
     			 	return false;
-    			 }
-			}
+		    }
+		
+
 		}
-		    catch (Exception e) {
+       } catch (Exception e) {
 			return false;
 		    }
-}
+       
 for (int i = 0; i < word.length(); ++i) {
 this.data[row][col - i] = word.charAt(i);
 }
 return true;
-}
    }
+
 
 
 
    public boolean addWordHorizontalPositive(String word,int row, int col){
        try{
-    	int size  = word.length();
-    	    	if (size > col){
-    		return false;
-    	} else {
+	   System.out.println(row.parseInt(), col.parseInt());
+    
     		for (int i = 0; i < data.length; i ++){
-		    if !(data[row + i][col] == (word.charAt(i)) || (data[row][col+i] == ' ')){
+		    if (!(data[row + i][col] == (word.charAt(i)) || (data[row][col+i] == ' '))){
+		
     			 	return false;
     			 }
 			}
-		}
+		
+       }
 		    catch (Exception e) {
+			//System.out.println("Bobby");
 			return false;
 		    }
-}
+   
 for (int i = 0; i < word.length(); ++i) {
 this.data[row + i][col] = word.charAt(i);
 }
 return true;
-       }
    }
+   
 
    public boolean addWordHorizontalNegative(String word,int row, int col){
        try{
-    	int size  = word.length();
-    	    	if (size > col){
-    		return false;
-    	} else {
+    
     		for (int i = 0; i < data.length; i ++){
-		    if !(data[row - i][col] == (word.charAt(i)) || (data[row-i][col] == ' ')){
+		    if (!(data[row - i][col] == (word.charAt(i)) || (data[row-i][col] == ' '))){
     			 	return false;
     			 }
 			}
-		}
+		
+       }
 		    catch (Exception e) {
 			return false;
 		    }
-}
+   
 for (int i = 0; i < word.length(); ++i) {
 this.data[row - i][col] = word.charAt(i);
 }
 return true;
 }
-   }
-
-   public boolean addWordDiagonalRightPositive(String word,int row, int col){
+   
+public boolean addWordDiagonalRightPositive(String word,int row, int col){
        try{
-    	int size  = word.length();
-    	    	if (size > col){
-    		return false;
-    	} else {
+    
     		for (int i = 0; i < data.length; i ++){
-		    if !(data[row + i ][col+ i] == (word.charAt(i)) || (data[row][col+1] == ' '){
+		    if (!(data[row + i ][col+ i] == (word.charAt(i)) || (data[row][col+1] == ' '))){
     			 	return false;
-    			 }
 			}
-		}
+		}}
+			
+				
 		    catch (Exception e) {
 			return false;
 		    }
-}
 for (int i = 0; i < word.length(); ++i) {
 this.data[row + i][col + i] = word.charAt(i);
 }
 return true;
-}
-   }
+       }
 
+   
 
 
    public boolean addWordDiagonalLeftPositive(String word,int row, int col){
        try{
-    	int size  = word.length();
-    	    	if (size > col){
-    		return false;
-    	} else {
+    
     		for (int i = 0; i < data.length; i ++){
-		    if !(data[row - i][col+i] == (word.charAt(i)) || (data[row - i][col+i] == ' ')){
+		    if (!(data[row - i][col+i] == (word.charAt(i)) || (data[row - i][col+i] == ' '))){
     			 	return false;
-    			 }
+    			 
 			}
-		}
+		}}
 		    catch (Exception e) {
 			return false;
 		    }
-}
+
 for (int i = 0; i < word.length(); ++i) {
 this.data[row - i][col + i] = word.charAt(i);
 }
@@ -260,20 +250,17 @@ return true;
 
   public boolean addWordDiagonalLeftNegative(String word,int row, int col){
        try{
-    	int size  = word.length();
-    	    	if (size > col){
-    		return false;
-    	} else {
+    
     		for (int i = 0; i < data.length; i ++){
-		    if !(data[row - i][col-i] == (word.charAt(i)) || (data[row - i][col-i] == ' ')){
+		    if (!(data[row - i][col-i] == (word.charAt(i)) || (data[row - i][col-i] == ' '))){
     			 	return false;
     			 }
-			}
-		}
+			
+		}}
 		    catch (Exception e) {
 			return false;
 		    }
-}
+  
 for (int i = 0; i < word.length(); ++i) {
 this.data[row - i][col -i] = word.charAt(i);
 }
@@ -288,24 +275,40 @@ return true;
 
   public boolean addWordDiagonalRightNegative(String word,int row, int col){
        try{
-    	int size  = word.length();
-    	    	if (size > col){
-    		return false;
-    	} else {
+    
     		for (int i = 0; i < data.length; i ++){
-		    if !(data[row + i][col-i] == (word.charAt(i)) || (data[row + i][col-i] == ' ')){
+		    if (!(data[row + i][col-i] == (word.charAt(i)) || (data[row + i][col-i] == ' '))){
     			 	return false;
     			 }
-			}
-		}
+			
+		}}
 		    catch (Exception e) {
 			return false;
 		    }
-}
+  
 for (int i = 0; i < word.length(); ++i) {
 this.data[row +i][col -i] = word.charAt(i);
 }
 return true;
-   } 
+  }
 
+   public boolean addWordVerticalPositive(String word,int row, int col){
+       try{
+    
+    		for (int i = 0; i < data.length; i ++){
+		    if (!(data[row + i][col] == (word.charAt(i)) || (data[row + i][col] == ' '))){
+    			 	return false;
+		    }
+		}
+		}
+		    catch (Exception e) {
+			return false;
+		    }
+  
+for (int i = 0; i < word.length(); ++i) {
+this.data[row +i][col] = word.charAt(i);
+}
+return true;
 
+  }
+}
