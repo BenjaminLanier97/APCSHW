@@ -16,6 +16,47 @@ Array1 = e;
 public void add(String e){
 for (int i = 0; i, Array1.size(); i ++){
  if e.compareTo(Array1[i] > 0) &&
+ public void InsertionSort(){
+    OrderedSuperArray c = new OrderedSuperArray();
+    String b;
+    for(int i = 0; i < this.size(); i++){
+	If (!(c[i] < c[i +1]) && ([i] > c[i-1])){
+	    b =  c.remove(i);
+	    for(int z = 0; z < this.size(); z++){
+		If  ((c[z]  < c[z +1]) && (c[z] > c[z-1])){
+		    c.add(b);
+			    
+			}
+	    }
+		
+		
+
+	    
+
+	}
+
+
+    }
+	return c;
+}
+public int find(String target){
+    OrderedSuperArray c = new OrderedSuperArray();
+     for(int i = 0; i < this.size(); i++){
+	 if (c[i].equals(target)) {
+	     return i;
+	 }
+	 else{
+	     return -1;
+
+	 }
+    
+    
+
+
+
+     }
+}
+ 
 
 
 }
