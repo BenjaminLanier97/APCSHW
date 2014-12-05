@@ -60,4 +60,27 @@ public int find(String target){
 
 
 }
+
+public void SelectionSort(){
+    String MinValue;
+    
+    for (int i = 0; i <SuperArray.size(); i++){
+	 MinValue = superArray[i];
+	 for (int j = 0; j <SuperArray.size(); j++){
+	     if (SuperArray[i] < SuperArray[j]){
+		 SuperArray[i] = SuperArray [j]
+		     }
+	     MinValue = SuperArray[j];
+	 }
+    }
+	     
+	 
+
+
+
+
+    }
+
+
+
 }
