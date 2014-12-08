@@ -15,7 +15,13 @@ public class OrderedSuperArray extends SuperArray{
 
     public void add(String e){
 	for (int i = 0; i, Array1.size(); i ++){
-	    if (e.compareTo(Array1[i] > 0) &&  public void InsertionSort(){
+	    if (e.compareTo(Array1[i]) > 0) {
+		e.add(i);
+		}
+	}
+    }
+
+  public void InsertionSort(){
 		    OrderedSuperArray c = new OrderedSuperArray();
 		    String b;
 		    for(int i = 0; i < this.size(); i++){
@@ -25,9 +31,9 @@ public class OrderedSuperArray extends SuperArray{
 				If  ((c[z]  < c[z +1]) && (c[z] > c[z-1])){
 				    c.add(b);
 			    
-				}
-			    }
-			}}}}}
+				
+			    
+				}}}
 		
 
 	return c;
