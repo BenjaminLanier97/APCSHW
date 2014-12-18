@@ -59,20 +59,4 @@ public int find(String target){
 
 	 }}}
 
-public void SelectionSort(){
-    int MinValue;
-    int Substitue;
-    MinValue = Array1[i];
-    
-    for (int i = 0; i <Array1.length; i++){
-	  MinValue = Array1[i];
-	 for (int j = i; j <Array1.length; j++){
-	     if (Array1[j]< MinValue){
-		 MinValue = Array1[j];
-		 
-		     }
-	 }
-	 Substitute = Array1[i];
-	      Array1[i] =MinValue;
-	    Array1[j] = Substitute;
-    }}}
+}
